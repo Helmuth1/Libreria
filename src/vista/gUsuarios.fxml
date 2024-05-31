@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.GUsuariosController">
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="471.0" prefWidth="900.0" style="-fx-background-color: #0598ff;">
+         <children>
+            <TableView fx:id="tableusuarios" layoutX="38.0" layoutY="73.0" prefHeight="200.0" prefWidth="738.0">
+               <columns>
+                  <TableColumn fx:id="colID" prefWidth="27.199983596801758" text="ID" />
+                  <TableColumn fx:id="colUsuario" prefWidth="77.5999984741211" text="Usuario" />
+                  <TableColumn fx:id="colNombre" prefWidth="79.199951171875" text="Nombre" />
+                  <TableColumn fx:id="colDireccion" minWidth="0.0" prefWidth="108.0" text="Direccion" />
+                  <TableColumn fx:id="colTelefono" prefWidth="87.99993896484375" text="Telefono" />
+                  <TableColumn fx:id="colidentificacion" prefWidth="162.40005493164062" text="Identificacion" />
+                  <TableColumn fx:id="colContrasena" prefWidth="96.7999267578125" text="Contraseña" />
+                  <TableColumn fx:id="colRol" prefWidth="99.199951171875" text="Rol" />
+               </columns>
+            </TableView>
+            <Label layoutX="308.0" layoutY="25.0" text="Registro de Usuarios">
+               <font>
+                  <Font name="Arial Black" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfIdentificacion" layoutX="535.0" layoutY="301.0" />
+            <TextField fx:id="tfNombre" layoutX="258.0" layoutY="341.0" />
+            <TextField fx:id="tfDireccion" layoutX="258.0" layoutY="379.0" />
+            <TextField fx:id="tfTelefono" layoutX="258.0" layoutY="420.0" />
+            <Label layoutX="419.0" layoutY="302.0" prefHeight="0.0" prefWidth="106.0" text="Identificacion">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="188.0" layoutY="343.0" text="Nombre">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="173.0" layoutY="381.0" text="Direccion">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="184.0" layoutY="421.0" text="Telefono">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="btAgregar" layoutX="799.0" layoutY="106.0" mnemonicParsing="false" onAction="#agregarUsuario" prefHeight="26.0" prefWidth="66.0" text="Agregar" />
+            <Button fx:id="btmodificar" layoutX="799.0" layoutY="160.0" mnemonicParsing="false" onAction="#modificarUsuario" text="Modificar" />
+            <Button fx:id="btEliminar" layoutX="799.0" layoutY="215.0" mnemonicParsing="false" onAction="#eliminarUsuario" prefHeight="26.0" prefWidth="66.0" text="Eliminar" />
+            <Button fx:id="btRegresar" layoutX="801.0" layoutY="407.0" mnemonicParsing="false" onAction="#btnBackClicked" text="Regresar" />
+            <TextField fx:id="tfRol" layoutX="535.0" layoutY="379.0" />
+            <TextField fx:id="tfcontraseña" layoutX="535.0" layoutY="341.0" />
+            <TextField fx:id="tfUsuario" layoutX="258.0" layoutY="301.0" />
+            <Label layoutX="429.0" layoutY="381.0" text="Rol">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="437.0" layoutY="343.0" text="Contraseña">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="188.0" layoutY="302.0" text="Usuario">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="465.0" prefWidth="800.0" style="-fx-background-color: #0598ff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistrolibrosController">
+   <children>
+      <TableView fx:id="tablelibros" layoutX="47.0" layoutY="73.0" prefHeight="200.0" prefWidth="607.0">
+        <columns>
+          <TableColumn fx:id="colISBN" prefWidth="100.80001831054688" text="ISBN" />
+          <TableColumn fx:id="colTitulo" prefWidth="92.00003051757812" text="Titulo" />
+            <TableColumn fx:id="colAutor" prefWidth="95.20001220703125" text="Autor" />
+            <TableColumn fx:id="colAnopublicacion" prefWidth="111.99993896484375" text="Año Publicacion" />
+            <TableColumn fx:id="colEditorial" prefWidth="96.0" text="Editorial" />
+            <TableColumn fx:id="colDisponibilidad" prefWidth="108.0" text="Disponibilidad" />
+        </columns>
+      </TableView>
+      <Label layoutX="320.0" layoutY="25.0" text="Registro de Libros">
+         <font>
+            <Font name="Arial Black" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfISBN" layoutX="170.0" layoutY="309.0" />
+      <TextField fx:id="tfTitulo" layoutX="170.0" layoutY="350.0" />
+      <TextField fx:id="tfAutor" layoutX="170.0" layoutY="393.0" />
+      <TextField fx:id="tfDisponibilidad" layoutX="474.0" layoutY="392.0" />
+      <TextField fx:id="tfpublicacion" layoutX="474.0" layoutY="309.0" />
+      <TextField fx:id="tfEditorial" layoutX="474.0" layoutY="349.0" />
+      <Label layoutX="123.0" layoutY="311.0" text="ISBN">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="116.0" layoutY="352.0" text="Titulo">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="117.0" layoutY="395.0" text="Autor">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="337.0" layoutY="311.0" text="Año publicacion">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="388.0" layoutY="351.0" text="Editorial">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="351.0" layoutY="394.0" text="Disponibilidad">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="btAgregar" layoutX="676.0" layoutY="103.0" mnemonicParsing="false" onAction="#btnOkClicked" prefHeight="26.0" prefWidth="66.0" text="Agregar" />
+      <Button fx:id="btModificar" layoutX="676.0" layoutY="160.0" mnemonicParsing="false" onAction="#modificarLibro" text="Modificar" />
+      <Button fx:id="btEliminar" layoutX="676.0" layoutY="212.0" mnemonicParsing="false" onAction="#eliminarlibro" prefHeight="26.0" prefWidth="66.0" text="Eliminar" />
+      <Button fx:id="btnRegresar" layoutX="678.0" layoutY="406.0" mnemonicParsing="false" onAction="#btnBackClicked" text="Regresar" />
+   </children>
+</AnchorPane>
