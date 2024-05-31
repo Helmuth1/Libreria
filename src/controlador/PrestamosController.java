@@ -73,7 +73,7 @@ public class PrestamosController implements Initializable {
         colAnopublicacion.setCellValueFactory(new PropertyValueFactory<>("anoPublicacion"));
         colEditorial.setCellValueFactory(new PropertyValueFactory<>("editorial"));
         colDisponibilidad.setCellValueFactory(new PropertyValueFactory<>("disponibilidad"));
-
+        System.out.println("Hola");
         MostrarDatos();
     }
     
