@@ -4,10 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/helmu/Documents/NetBeansProjects/Libreria/src/controlador/logincontroller.java</file>
+            <file>file:/C:/Users/helmu/Documents/NetBeansProjects/Libreria/src/controlador/HistorialAdminController.java</file>
             <file>file:/C:/Users/helmu/Documents/NetBeansProjects/Libreria/src/controlador/RegistrolibrosController.java</file>
-            <file>file:/C:/Users/helmu/Documents/NetBeansProjects/Libreria/src/controlador/InicioUserController.java</file>
             <file>file:/C:/Users/helmu/Documents/NetBeansProjects/Libreria/src/controlador/PrestamosController.java</file>
+            <file>file:/C:/Users/helmu/Documents/NetBeansProjects/Libreria/src/controlador/prestamos.java</file>
             <file>file:/C:/Users/helmu/Documents/NetBeansProjects/Libreria/src/controlador/GUsuariosController.java</file>
+            <file>file:/C:/Users/helmu/Documents/NetBeansProjects/Libreria/src/controlador/HistorialUserController.java</file>
             <file>file:/C:/Users/helmu/Documents/NetBeansProjects/Libreria/src/controlador/DevolucionController.java</file>
         </group>
     </open-files>

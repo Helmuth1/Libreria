@@ -255,7 +255,6 @@ public class PrestamosController implements Initializable {
         limpiarCampos();
         mostrarMensaje("Éxito", "Préstamo registrado exitosamente. Fecha de devolución: " + fechaDevolucion);
     } catch (SQLException e) {
-        e.printStackTrace();
         mostrarMensaje("Error", "Ocurrió un error al registrar el préstamo.");
     }
 }
