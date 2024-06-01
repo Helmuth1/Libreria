@@ -60,6 +60,8 @@ public class PrestamosController implements Initializable {
     @FXML
     private TextField tfISBN;
     @FXML
+    private TextField tfFiltrar;
+    @FXML
     private Button btnRegresar;
     
     /**
@@ -67,14 +69,16 @@ public class PrestamosController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-           colISBN.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        colISBN.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         colTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         colAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
         colAnopublicacion.setCellValueFactory(new PropertyValueFactory<>("anoPublicacion"));
         colEditorial.setCellValueFactory(new PropertyValueFactory<>("editorial"));
         colDisponibilidad.setCellValueFactory(new PropertyValueFactory<>("disponibilidad"));
-        System.out.println("Hola");
+
         MostrarDatos();
+        
+        tfFiltrar.textProperty().addListener((observable, oldValue, newValue) -> filtrarTabla(newValue));
     }
     
         @FXML
@@ -90,34 +94,53 @@ public class PrestamosController implements Initializable {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            // Manejar la excepción en caso de que el archivo FXML no se pueda cargar
         }
     }
+        
+    private void filtrarTabla(String filtro) {
+        if (filtro == null || filtro.isEmpty()) {
+            tablelibros1.setItems(listaLibros);
+            return;
+        }
+
+        ObservableList<libros> librosFiltrados = FXCollections.observableArrayList();
+
+        for (libros libro : listaLibros) {
+            if (libro.getTitulo().toLowerCase().contains(filtro.toLowerCase()) ||
+                libro.getAutor().toLowerCase().contains(filtro.toLowerCase())) {
+                librosFiltrados.add(libro);
+            }
+        }
+
+        tablelibros1.setItems(librosFiltrados);
+    }
+    
+    private ObservableList<libros> listaLibros = FXCollections.observableArrayList();
     
     private void MostrarDatos() {
         String sql = "SELECT isbn, titulo, autor, ano_publicacion, editorial, cantidad_disponible FROM libros";
-    
-    try (Connection conn = this.connect();
-         Statement stmt  = conn.createStatement();
-         ResultSet rs    = stmt.executeQuery(sql)){
-        
-        ObservableList<libros> libros = FXCollections.observableArrayList();
-        
-        while (rs.next()) {
-            libros.add(new libros(
-                rs.getString("ISBN"),
-                rs.getString("titulo"),
-                rs.getString("autor"),
-                rs.getDate("ano_Publicacion"),
-                rs.getString("editorial"),
-                rs.getInt("cantidad_disponible")
- 
-            ));
+
+        try (Connection conn = this.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            listaLibros.clear();
+
+            while (rs.next()) {
+                listaLibros.add(new libros(
+                    rs.getString("isbn"),
+                    rs.getString("titulo"),
+                    rs.getString("autor"),
+                    rs.getDate("ano_publicacion"),
+                    rs.getString("editorial"),
+                    rs.getInt("cantidad_disponible")
+                ));
+            }
+
+            tablelibros1.setItems(listaLibros);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
-        tablelibros1.setItems(libros);
-    } catch (SQLException e) {
-        System.out.println(e.getMessage());
-    }
     }
 
     private void limpiarCampos() {
@@ -155,7 +178,7 @@ public class PrestamosController implements Initializable {
     return false;
 }
     
-private boolean tienePrestamosPendientes(String usuario) {
+    private boolean tienePrestamosPendientes(String usuario) {
     String query = "SELECT * FROM prestamos WHERE usuario = ? AND (fecha_real_devolucion IS NULL OR fecha_real_devolucion > CURRENT_DATE)";
     try (Connection conn = connect();
          PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -168,7 +191,7 @@ private boolean tienePrestamosPendientes(String usuario) {
     }
 }
 
-private boolean tieneLibroPrestadoHoy(String usuario, String isbn) {
+    private boolean tieneLibroPrestadoHoy(String usuario, String isbn) {
     String query = "SELECT COUNT(*) AS total FROM prestamos WHERE usuario = ? AND libro_isbn = ? AND fecha_prestamo = CURRENT_DATE AND fecha_devolucion IS NULL";
     try (Connection conn = connect();
          PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -186,8 +209,8 @@ private boolean tieneLibroPrestadoHoy(String usuario, String isbn) {
     return false;
 }
 
-@FXML
-private void prestarLibro(ActionEvent event) {
+    @FXML
+    private void prestarLibro(ActionEvent event) {
     String usuario = tfUsuarioId.getText();
     String isbn = tfISBN.getText();
 

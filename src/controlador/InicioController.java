@@ -57,7 +57,7 @@ public class InicioController implements Initializable {
         } else if (sourceButton == btnGestion) {
             fxmlFile = "/vista/gUsuarios.fxml";
         } else if (sourceButton == btnHistorial) {
-            fxmlFile = "/vista/historial.fxml";
+            fxmlFile = "/vista/historialAdmin.fxml";
         } 
         
 

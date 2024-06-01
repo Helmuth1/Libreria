@@ -8,15 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="700.0" style="-fx-background-color: #0598ff;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="controlador.DevolucionController">
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="700.0" style="-fx-background-color: #0598ff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.DevolucionController">
    <children>
-      <Label layoutX="258.0" layoutY="53.0" text="Devolucion de Libros">
+      <Label layoutX="258.0" layoutY="41.0" text="Devolucion de Libros">
          <font>
             <Font name="Arial Black" size="16.0" />
          </font>
       </Label>
-      <TableView fx:id="tablelibros1" layoutX="46.0" layoutY="113.0" prefHeight="200.0" prefWidth="607.0">
+      <TableView fx:id="tablelibros1" layoutX="46.0" layoutY="125.0" prefHeight="200.0" prefWidth="607.0">
          <columns>
             <TableColumn fx:id="colISBN" prefWidth="100.80001831054688" text="ISBN" />
             <TableColumn fx:id="colTitulo" prefWidth="92.00003051757812" text="Titulo" />
@@ -27,8 +26,14 @@
          </columns>
       </TableView>
       <Button fx:id="devolverlibro" layoutX="517.0" layoutY="339.0" mnemonicParsing="false" onAction="#devolver" text="Devolver Libro" />
-      <TextField fx:id="tfUsuarioId" layoutX="98.0" layoutY="339.0" promptText="Id de usuario" />
+      <TextField fx:id="tfUsuarioId" layoutX="98.0" layoutY="339.0" promptText="Usuario" />
       <TextField fx:id="tfISBN" layoutX="306.0" layoutY="339.0" promptText="ISBN del libro" />
       <Button fx:id="btnRegresar" layoutX="607.0" layoutY="397.0" mnemonicParsing="false" onAction="#btnBackClicked" text="Regresar" />
+      <Label layoutX="74.0" layoutY="87.0" text="Filtrar:">
+         <font>
+            <Font name="Arial Black" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfFiltrar" layoutX="143.0" layoutY="87.0" prefHeight="26.0" prefWidth="214.0" />
    </children>
 </AnchorPane>

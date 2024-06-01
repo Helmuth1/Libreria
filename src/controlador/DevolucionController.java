@@ -62,7 +62,9 @@ public class DevolucionController implements Initializable {
     private TextField tfISBN;
     @FXML
     private Button btnRegresar;
-
+    @FXML
+    private TextField tfFiltrar;
+    
     /**
      * Initializes the controller class.
      */
@@ -76,34 +78,11 @@ public class DevolucionController implements Initializable {
         colDisponibilidad.setCellValueFactory(new PropertyValueFactory<>("disponibilidad"));
 
         MostrarDatos();
-    }    
+        
+        tfFiltrar.textProperty().addListener((observable, oldValue, newValue) -> filtrarTabla(newValue));
 
-        private void MostrarDatos() {
-        String sql = "SELECT isbn, titulo, autor, ano_publicacion, editorial, cantidad_disponible FROM libros";
+    }    
     
-    try (Connection conn = this.connect();
-         Statement stmt  = conn.createStatement();
-         ResultSet rs    = stmt.executeQuery(sql)){
-        
-        ObservableList<libros> libros = FXCollections.observableArrayList();
-        
-        while (rs.next()) {
-            libros.add(new libros(
-                rs.getString("ISBN"),
-                rs.getString("titulo"),
-                rs.getString("autor"),
-                rs.getDate("ano_Publicacion"),
-                rs.getString("editorial"),
-                rs.getInt("cantidad_disponible")
- 
-            ));
-        }
-        tablelibros1.setItems(libros);
-    } catch (SQLException e) {
-        System.out.println(e.getMessage());
-    }
-    }
-        
         private Connection connect() {
         String url = "jdbc:postgresql://bubble.db.elephantsql.com:5432/jqxkynmj";
         String user = "jqxkynmj";
@@ -116,6 +95,60 @@ public class DevolucionController implements Initializable {
         }
         return conn;
     }
+    
+        
+        private void filtrarTabla(String filtro) {
+        if (filtro == null || filtro.isEmpty()) {
+            tablelibros1.setItems(listaLibros);
+            return;
+        }
+
+        ObservableList<libros> librosFiltrados = FXCollections.observableArrayList();
+
+        for (libros libro : listaLibros) {
+            if (libro.getTitulo().toLowerCase().contains(filtro.toLowerCase()) ||
+                libro.getAutor().toLowerCase().contains(filtro.toLowerCase())) {
+                librosFiltrados.add(libro);
+            }
+        }
+
+        tablelibros1.setItems(librosFiltrados);
+    }
+    
+    private ObservableList<libros> listaLibros = FXCollections.observableArrayList();
+
+    
+        private void MostrarDatos() {
+        String sql = "SELECT isbn, titulo, autor, ano_publicacion, editorial, cantidad_disponible FROM libros";
+
+        try (Connection conn = this.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            listaLibros.clear();
+
+            while (rs.next()) {
+                listaLibros.add(new libros(
+                    rs.getString("isbn"),
+                    rs.getString("titulo"),
+                    rs.getString("autor"),
+                    rs.getDate("ano_publicacion"),
+                    rs.getString("editorial"),
+                    rs.getInt("cantidad_disponible")
+                ));
+            }
+
+            tablelibros1.setItems(listaLibros);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+        
+        private void limpiarCampos() {
+        tfUsuarioId.clear();
+        tfISBN.clear();
+    }
+        
     
         @FXML
     private void devolver(ActionEvent event) {
@@ -153,6 +186,7 @@ public class DevolucionController implements Initializable {
         pstmtActualizarLibro.executeUpdate();
 
         MostrarDatos();
+        limpiarCampos();
         mostrarMensaje("Éxito", "Libro devuelto exitosamente.");
     } catch (SQLException e) {
         e.printStackTrace();
